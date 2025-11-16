@@ -2,6 +2,11 @@
 <html lang="en">
 
 <head>
+    <style>
+        h1{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+    </style>
     <%- include('./partials/head') %>
         <title>homePage</title>
 </head>
@@ -13,7 +18,7 @@
             <div class="row row-cols-4">
                 <% blogs.forEach(blog=> { %>
                     <div class="col">
-                        <div class="card col" style="width: 18rem;">
+                        <div class="card col mb-5" style="width: 18rem;">
                             <img src="<%= blog.coverImageURL %>" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">
@@ -24,6 +29,7 @@
                         </div>
                     </div>
                 <% }) %>
+
             </div>
         </div>
 

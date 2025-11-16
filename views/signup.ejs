@@ -10,7 +10,12 @@
     <%- include('./partials/nav') %>
 
         <div class="container mt-4">
-            <form action="/user/signup" method="post">
+            <div class="text-center mt-3">
+                <span>Already have an account? </span>
+                <a href="/user/signin">SignIn</a>
+            </div>
+
+            <form action="/user/signup" method="post" autocomplete="off">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Full Name</label>
                     <input type="text" class="form-control" name="fullName" id="fullName" aria-describedby="fullName">
@@ -20,7 +25,6 @@
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
                     <input type="email" class="form-control" name="email" id="exampleInputEmail1"
                         aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Password</label>

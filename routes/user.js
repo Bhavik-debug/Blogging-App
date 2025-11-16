@@ -1,5 +1,6 @@
 const {Router} = require('express')
 const User = require('../models/user')
+const {createTokenForUser} = require('../service/authentication')
 
 const router = Router();
 
