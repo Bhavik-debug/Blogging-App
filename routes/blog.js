@@ -47,6 +47,21 @@ router.post('/',upload.single('coverImage'), async (req,res)=>{
     return res.redirect(`/blog/${blog._id}`);
 })
 
+//deleting blog
+router.delete('/:id', async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+    if (!blog) return res.status(404).send("Blog not found");
+    await Blog.findByIdAndDelete(req.params.id);
+    res.redirect('/');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+
+
 router.post("/comment/:blogId", async(req, res)=>{
   const comment = await Comment.create({
     content: req.body.content,

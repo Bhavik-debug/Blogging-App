@@ -3,6 +3,41 @@
 
 <head>
     <%- include('./partials/head') %>
+        <style>
+            /* Background similar to signup/signin pages */
+            body {
+                background-color: rgb(221, 221, 201);
+            }
+
+            /* Centered card container */
+            .blog-form-container {
+                max-width: 600px;
+                margin: 60px auto;
+                background: rgb(217, 235, 241);
+                padding: 30px 35px;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Form labels */
+            .blog-form-container .form-label {
+                font-weight: 600;
+                margin-bottom: 6px;
+            }
+
+            /* Textarea styling */
+            .blog-form-container textarea {
+                min-height: 150px;
+            }
+
+            /* Submit button styling (same as login/signup) */
+            .blog-form-container button {
+                width: 100%;
+                padding: 10px;
+                font-weight: 600;
+                border-radius: 8px;
+            }
+        </style>
         <title>homePage</title>
 </head>
 
@@ -10,26 +45,33 @@
     <%- include('./partials/nav') %>
 
         <div class="container">
-            <form action="/blog" method="post" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label for="coverImage" class="form-label">Cover Image</label>
-                    <input type="file" class="form-control" id="coverImage" name="coverImage" aria-describedby="coverImage">
-                </div>
-                <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="title" name="title" aria-describedby="title">
-                </div>
-                <div class="mb-3">
-                    <label for="body" class="form-label">Body</label>
-                    <textarea class="form-control" name="body" id="body"></textarea>
-                </div>
-                <div class="mb-3">
-                    <button class="btn btn-primary">Submit</button>
-                </div>
-            </form>
-        </div>        
+            <div class="blog-form-container">
+                <form action="/blog" method="post" enctype="multipart/form-data">
 
-        <%- include('./partials/scripts') %>
+                    <div class="mb-3">
+                        <label for="coverImage" class="form-label">Cover Image</label>
+                        <input type="file" class="form-control" id="coverImage" name="coverImage">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="body" class="form-label">Body</label>
+                        <textarea class="form-control" name="body" id="body"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <button class="btn btn-primary">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    <%- include('./partials/scripts') %>
 </body>
 
 </html>

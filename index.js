@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require('cookie-parser')
 const Blog = require('./models/blog')
+const methodOverride = require('method-override');
 
 
 const userRoute = require('./routes/user');
@@ -24,6 +25,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/blogify')
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(methodOverride('_method'));
 app.use(cookieParser())
 app.use(checkForAuthenticationCookie("token"))
 app.use(express.static(path.resolve('./public')));
@@ -38,7 +40,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.resolve("./views"))
 
 app.get("/", async (req, res) => {
-    const allBlogs = await Blog.find({})
+    const allBlogs = await Blog.find({}).populate("createdBy");
     res.render("home", {
         user: req.user,
         blogs: allBlogs,

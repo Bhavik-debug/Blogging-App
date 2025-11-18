@@ -3,7 +3,81 @@
 
 <head>
     <%- include('./partials/head') %>
-        <title>SignIn</title>
+
+    <style>
+       body {
+            background-color: rgb(221, 221, 201);
+           font-family: "Inter", Arial, sans-serif;
+       }
+
+       .container {
+           max-width: 500px;
+           background: rgb(217, 235, 241);
+           padding: 35px 30px;
+           border-radius: 18px;
+           box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+           margin-top: 60px;
+           animation: fadeIn 0.5s ease-in-out;
+       }
+
+       .container h2 {
+           text-align: center;
+           margin-bottom: 25px;
+           font-weight: 600;
+       }
+
+       label {
+           font-weight: 500;
+           margin-bottom: 5px;
+       }
+
+       .form-control {
+           border-radius: 12px;
+           padding: 10px 14px;
+           box-shadow: none;
+           border: 1px solid #cfd7e3;
+           transition: border-color 0.2s ease;
+       }
+
+       .form-control:focus {
+           border-color: #5273ff;
+           box-shadow: 0 0 0 3px rgba(82, 115, 255, 0.2);
+       }
+
+       .btn-primary {
+           width: 100%;
+           padding: 10px 0;
+           border-radius: 12px;
+           background: #5273ff;
+           border: none;
+           margin-top: 10px;
+           font-weight: 600;
+           transition: 0.2s ease;
+       }
+
+       .btn-primary:hover {
+           background: #3e5df5;
+           transform: translateY(-2px);
+       }
+
+       .text-center a {
+           text-decoration: none;
+           color: #5273ff;
+           font-weight: 600;
+       }
+
+       .text-center a:hover {
+           text-decoration: underline;
+       }
+
+       @keyframes fadeIn {
+           from { opacity: 0; transform: translateY(12px); }
+           to { opacity: 1; transform: translateY(0); }
+       }
+    </style>
+
+
+    <title>SignIn</title>
 </head>
 
 <body>
@@ -11,9 +85,9 @@
 
         <div class="container mt-4">
 
-            <div class="text-center mt-3">
+            <div class="text-center mb-2">
                 <span>Not having an account? </span>
-                <a href="/user/signup">Sign Up</a>
+                <a href="/user/signup">SignUp</a>
             </div>
 
             <form action="/user/signin" method="post">

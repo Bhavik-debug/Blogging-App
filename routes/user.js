@@ -13,21 +13,7 @@ router.get("/signup", (req,res)=>{
 })
 
 router.get("/logout", (req, res)=>{
-    return res.clearCookie("token").redirect("/");
-})
-
-router.post('/signin', async (req, res)=>{
-    const {email, password} = req.body;
-    try{
-        //matchPassword come from /model/user.js
-        const token = await User.matchPasswordAndGenerateToken(email, password);
-        return res.cookie("token", token).redirect("/")
-    }
-    catch{
-        return res.render("signin",{
-            error: "Incorrect ID or Password"
-        })
-    }
+    return res.clearCookie("token").redirect("/");//dont forget to clear cookie;
 })
 
 router.post("/signup", async (req, res) => {
@@ -44,6 +30,20 @@ router.post("/signup", async (req, res) => {
     });
   }
 });
+
+router.post('/signin', async (req, res)=>{
+    const {email, password} = req.body;
+    try{
+        //matchPassword come from /model/user.js
+        const token = await User.matchPasswordAndGenerateToken(email, password);
+        return res.cookie("token", token).redirect("/")
+    }
+    catch{
+        return res.render("signin",{
+            error: "Incorrect ID or Password"
+        })
+    }
+})
 
 
 module.exports = router;
