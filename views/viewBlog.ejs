@@ -7,10 +7,7 @@
             <%= blog.title %>
         </title>
 
-        <!-- Google Font (Inter – great for blogs) -->
-        <link
-            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Rubik:wght@300;400;500&display=swap"
-            rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
         <style>
             body {
@@ -57,6 +54,64 @@
                 background: none;
                 border: none;
                 padding: 0;
+            }
+            
+            /* COMMENTS SECTION */
+            .comment-box {
+                position: relative;
+                background: #fff;
+                padding: 10px 14px;
+                border-radius: 10px;
+                box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            /* profile image */
+            .comment-user-img {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            /* username + comment wrapper */
+            .comment-body {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                max-width: 90%;
+            }
+
+            /* username */
+            .comment-username {
+                font-weight: 600;
+                font-size: 0.95rem;
+                color: #222;
+                line-height: 1;
+            }
+
+            /* comment text */
+            .comment-content {
+                font-size: 0.9rem;
+                color: #555;
+                margin-top: 1px;
+                white-space: pre-wrap;
+            }
+
+            /* DELETE BUTTON (right aligned) */
+            .delete-btn {
+                position: absolute;
+                right: 12px;
+                top: 12px;
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                font-size: 18px;
+                color: #3d2695;
+                z-index: 10;
             }
         </style>
 </head>
@@ -109,20 +164,24 @@
             <!-- COMMENT LIST -->
             <div class="mt-4">
                 <% comments.forEach(comment=> { %>
-                    <div class="d-flex align-items-start mb-3">
-                        <img src="<%= comment.createdBy.profileImageURL %>" width="35px"
-                            class="me-2 rounded-circle" alt="">
-                        <div>
-                            <u><%= comment.createdBy.fullName %></u>
-                            <pre class="m-0"><%= comment.content %></pre>
-                            <button>del</button>
+                    <div class="comment-box">
+                        <img src="<%= comment.createdBy.profileImageURL %>" class="comment-user-img">
+
+                        <div class="comment-body">
+                            <div class="comment-username"><%= comment.createdBy.fullName %></div>
+                            <div class="comment-content"><%= comment.content %></div>
                         </div>
+                    
+                        <% if (user && blog.createdBy && user.id === comment.createdBy._id.toString()) { %>
+                            <form action="/blog/comment/<%= comment._id %>?_method=DELETE" method="POST">
+                                <button class="delete-btn" type="submit"><i class="fa-solid fa-trash"></i></button>
+                            </form>
+                        <% } %>
                     </div>
-                    <% }) %>
+                <% }) %>
             </div>
 
         </div>
-
 
         <%- include('./partials/scripts') %>
 </body>
